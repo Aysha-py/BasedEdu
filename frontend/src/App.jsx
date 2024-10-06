@@ -1,7 +1,10 @@
-import "./App.css";
-
+import Landing from "./Components/Landing";
 function App() {
-  return <>hi</>;
+  return (
+    <>
+      <Landing />
+    </>
+  );
 }
 
 export default App;
