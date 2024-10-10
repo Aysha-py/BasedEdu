@@ -1,20 +1,9 @@
-import Footer from "./Components/Footer";
-import HeroHome from "./Components/Hero";
-import Landing from "./Components/Landing";
-import Faq from "./Components/Faq";
-import Testimonial from "./Components/Testimonial";
-import "./index.css";
+import { RouterProvider } from "react-router-dom";
+
+import router from "./routes";
 
 function App() {
-  return (
-    <>
-      <Landing />
-      <HeroHome />
-      <Testimonial />
-      <Faq />
-      <Footer />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -4,6 +4,7 @@ import Star from "../assets/Star.png";
 import image from "../assets/image.png";
 import image1 from "../assets/image1.png";
 import image2 from "../assets/image2.png";
+import Vecto from "../assets/Vecto.png";
 const Testimonial = () => {
   const renderStars = () => {
     return (
@@ -59,7 +60,7 @@ const Testimonial = () => {
         </div>
       </div>
       {/* Governance */}
-      <div className="max-w-6xl mx-auto p-6 bg-[#0244F11A]">
+      <div className="max-w-6xl mx-auto p-6 bg-[#0244F11A] ">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Card 1 */}
           <div className=" p-6 flex flex-col items-center">
@@ -104,90 +105,98 @@ const Testimonial = () => {
             <img src={Star} alt="" />
           </span>
         </h4>
+        <div
+          style={{
+            backgroundImage: `url('${Vecto}')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "400px 420px",
+          }}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Card 1 */}
+            <div className="bg-white shadow-lg rounded-md p-2 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Quality"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Card 1 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Quality"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
-          </div>
+            {/* Card 2 */}
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Expertise"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
 
-          {/* Card 2 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Expertise"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
-          </div>
+            {/* Card 3 */}
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Customer Focus"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
 
-          {/* Card 3 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Customer Focus"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
-          </div>
+            {/* Card 4 */}
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Innovation"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
 
-          {/* Card 4 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Innovation"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
-          </div>
+            {/* Card 5 */}
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Reliability"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
 
-          {/* Card 5 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Reliability"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
-          </div>
-
-          {/* Card 6 */}
-          <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <img
-              src={icon}
-              alt="Support"
-              className="mb-4 h-8 w-8 object-cover"
-            />
-            <p className="font-medium">Smart Contract</p>
-            <p className="text-center text-[#303030] text-sm">
-              Automate and secure loan agreements and repayments using smart
-              contracts.
-            </p>
+            {/* Card 6 */}
+            <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+              <img
+                src={icon}
+                alt="Support"
+                className="mb-4 h-8 w-8 object-cover"
+              />
+              <p className="font-medium">Smart Contract</p>
+              <p className="text-center text-[#303030] text-sm">
+                Automate and secure loan agreements and repayments using smart
+                contracts.
+              </p>
+            </div>
           </div>
         </div>
       </div>
