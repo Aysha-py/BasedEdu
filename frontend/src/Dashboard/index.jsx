@@ -4,20 +4,63 @@ import Sidebar from "../Dashboard/components/Sidebar";
 import StepOne from "../Dashboard/components/StepOne";
 import StepTwo from "../Dashboard/components/StepTwo";
 import StepThree from "../Dashboard/components/StepThree";
+import Stepper from "../Dashboard/components/Stepper";
 
 const Signup = () => {
   const [step, setStep] = useState(1);
 
+  // Form data state (collect data from all steps)
+  const [formData, setFormData] = useState({
+    institution: "",
+    country: "Nigeria",
+    city: "",
+    postCode: "",
+    email: "",
+  });
+
+  const nextStep = () => {
+    setStep((prevStep) => prevStep + 1);
+  };
+
+  const previousStep = () => {
+    setStep((prevStep) => prevStep - 1);
+  };
+
+  const handleFormDataChange = (field, value) => {
+    setFormData({
+      ...formData,
+      [field]: value,
+    });
+  };
+
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <StepOne />;
+        return (
+          <StepOne
+            nextStep={nextStep}
+            formData={formData}
+            setFormData={handleFormDataChange}
+          />
+        );
       case 2:
-        return <StepTwo />;
+        return (
+          <StepTwo
+            nextStep={nextStep}
+            previousStep={previousStep}
+            formData={formData}
+          />
+        );
       case 3:
-        return <StepThree />;
+        return <StepThree previousStep={previousStep} formData={formData} />;
       default:
-        return <StepOne />;
+        return (
+          <StepOne
+            nextStep={nextStep}
+            formData={formData}
+            setFormData={handleFormDataChange}
+          />
+        );
     }
   };
 
@@ -29,29 +72,10 @@ const Signup = () => {
       {/* Sidebar */}
       <Sidebar />
 
-      {/* Main content - registration steps */}
+      {/* Main content */}
       <div className="ml-[25%] w-[75%] h-screen pt-20 p-8 bg-gray-50">
-        {" "}
-        {/* Adjusted margins */}
+        <Stepper currentStep={step} />
         {renderStep()}
-        <div className="mt-8 flex justify-between">
-          {step > 1 && (
-            <button
-              onClick={() => setStep(step - 1)}
-              className="bg-gray-600 text-white px-4 py-2 rounded"
-            >
-              Previous
-            </button>
-          )}
-          {step < 3 && (
-            <button
-              onClick={() => setStep(step + 1)}
-              className="bg-blue-600 text-white px-4 py-2 rounded"
-            >
-              Next
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );

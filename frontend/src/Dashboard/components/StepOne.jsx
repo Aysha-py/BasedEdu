@@ -1,10 +1,34 @@
-import { useState, useEffect } from "react";
-import { FaArrowLeft, FaCheck } from "react-icons/fa";
+import PropTypes from "prop-types"; // Import PropTypes
+import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const StepOne = () => {
-  const [cities, setCities] = useState([]);
-  const [institutions] = useState([
+const StepOne = ({ nextStep, formData, setFormData }) => {
+  const navigate = useNavigate();
+  const cities = [
+    "Lagos",
+    "Abuja",
+    "Port Harcourt",
+    "Kano",
+    "Ibadan",
+    "Enugu",
+    "Benin City",
+    "Jos",
+    "Abeokuta",
+    "Uyo",
+    "Kaduna",
+    "Ilorin",
+    "Owerri",
+    "Onitsha",
+    "Asaba",
+    "Warri",
+    "Calabar",
+    "Akure",
+    "Makurdi",
+    "Minna",
+  ];
+
+  const institutions = [
     "University of Lagos",
     "University of Nigeria, Nsukka",
     "Obafemi Awolowo University",
@@ -12,65 +36,28 @@ const StepOne = () => {
     "Covenant University",
     "Federal University of Technology, Akure",
     "University of Ibadan",
-  ]);
-  const [selectedCountry, setSelectedCountry] = useState("Nigeria");
-  const [selectedInstitution, setSelectedInstitution] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [postCode, setPostCode] = useState("");
-  const [email, setEmail] = useState("");
+  ];
+
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchCities();
-  }, []);
-
-  const fetchCities = async () => {
-    try {
-      const response = await fetch(
-        `https://wft-geo-db.p.rapidapi.com/v1/geo/countries/NG/cities`,
-        {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Key": "your-rapidapi-key-here", // Replace with your actual API key
-            "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-          },
-        }
-      );
-      const data = await response.json();
-
-      // Log the data to see the response format
-      console.log("Cities API Response: ", data);
-
-      // Set the cities if available
-      if (data.data && Array.isArray(data.data)) {
-        setCities(data.data.map((city) => city.name));
-      } else {
-        console.error("No city data found.");
-      }
-    } catch (error) {
-      console.error("Error fetching cities:", error);
-    }
-  };
 
   // Validation function
   const validateFields = () => {
     let errors = {};
-    if (!selectedInstitution) {
+    if (!formData.institution) {
       errors.institution = "Institution is required";
     }
-    if (!selectedCountry) {
+    if (!formData.country) {
       errors.country = "Country is required";
     }
-    if (!selectedCity) {
+    if (!formData.city) {
       errors.city = "City is required";
     }
-    if (!postCode) {
+    if (!formData.postCode) {
       errors.postCode = "Post code is required";
     }
-    if (!email) {
+    if (!formData.email) {
       errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Email address is invalid";
     }
     setErrors(errors);
@@ -80,7 +67,7 @@ const StepOne = () => {
 
   const handleNext = () => {
     if (validateFields()) {
-      console.log("Proceed to Step 2");
+      nextStep(); // Call the parent's nextStep function
     }
   };
 
@@ -93,30 +80,6 @@ const StepOne = () => {
           onClick={() => navigate("/")} // Navigate to home page
         />
         <h2 className="text-2xl font-semibold">Register Institution</h2>
-      </div>
-
-      {/* Stepper */}
-      <div className="flex justify-center items-center mb-8">
-        <div className="flex items-center">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white">
-            <FaCheck />
-          </div>
-          <span className="mx-2">Register School</span>
-        </div>
-
-        <div className="w-24 h-[2px] bg-gray-300"></div>
-
-        <div className="flex items-center">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300"></div>
-          <span className="mx-2">Upload Courses</span>
-        </div>
-
-        <div className="w-24 h-[2px] bg-gray-300"></div>
-
-        <div className="flex items-center">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-300"></div>
-          <span className="mx-2">Register Lecturers</span>
-        </div>
       </div>
 
       {/* Centered paragraph */}
@@ -132,8 +95,8 @@ const StepOne = () => {
           className={`border p-2 mb-4 w-full ${
             errors.institution ? "border-red-500" : ""
           }`}
-          value={selectedInstitution}
-          onChange={(e) => setSelectedInstitution(e.target.value)}
+          value={formData.institution}
+          onChange={(e) => setFormData("institution", e.target.value)}
         >
           <option value="">Select your institution</option>
           {institutions.map((institution, index) => (
@@ -151,11 +114,10 @@ const StepOne = () => {
           className={`border p-2 mb-4 w-full ${
             errors.country ? "border-red-500" : ""
           }`}
-          value={selectedCountry}
-          onChange={(e) => setSelectedCountry(e.target.value)}
+          value={formData.country}
+          onChange={(e) => setFormData("country", e.target.value)}
         >
           <option value="Nigeria">Nigeria</option>
-          {/* Add more country options if needed */}
         </select>
         {errors.country && (
           <p className="text-red-500 text-sm">{errors.country}</p>
@@ -166,19 +128,15 @@ const StepOne = () => {
           className={`border p-2 mb-4 w-full ${
             errors.city ? "border-red-500" : ""
           }`}
-          value={selectedCity}
-          onChange={(e) => setSelectedCity(e.target.value)}
+          value={formData.city}
+          onChange={(e) => setFormData("city", e.target.value)}
         >
           <option value="">Select your city</option>
-          {cities.length > 0 ? (
-            cities.map((city, index) => (
-              <option key={index} value={city}>
-                {city}
-              </option>
-            ))
-          ) : (
-            <option value="">Loading cities...</option>
-          )}
+          {cities.map((city, index) => (
+            <option key={index} value={city}>
+              {city}
+            </option>
+          ))}
         </select>
         {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
 
@@ -188,8 +146,8 @@ const StepOne = () => {
           className={`border p-2 mb-4 w-full ${
             errors.postCode ? "border-red-500" : ""
           }`}
-          value={postCode}
-          onChange={(e) => setPostCode(e.target.value)}
+          value={formData.postCode}
+          onChange={(e) => setFormData("postCode", e.target.value)}
           placeholder="Enter post code"
         />
         {errors.postCode && (
@@ -202,8 +160,8 @@ const StepOne = () => {
           className={`border p-2 mb-4 w-full ${
             errors.email ? "border-red-500" : ""
           }`}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={(e) => setFormData("email", e.target.value)}
           placeholder="Enter email address"
         />
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
@@ -220,6 +178,13 @@ const StepOne = () => {
       </form>
     </div>
   );
+};
+
+// Define prop types
+StepOne.propTypes = {
+  nextStep: PropTypes.func.isRequired,
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
 export default StepOne;
