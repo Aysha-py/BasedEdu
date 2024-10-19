@@ -6,6 +6,7 @@ import {
   FaCreditCard,
   FaBook,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -13,11 +14,12 @@ const Sidebar = () => {
       {/* Overview */}
       <h2 className="text-lg font-semibold mb-4 text-[#07100D]">Overview</h2>
       <ul className="space-y-2">
-        <li className="flex items-center space-x-2">
-          <FaHome />
-          <span className="text-[#B2BEBB]">Home</span>
-        </li>
-
+        <Link to={"/dashboard"}>
+          <li className="flex items-center space-x-2">
+            <FaHome />
+            <span className="text-[#B2BEBB]">Home</span>
+          </li>
+        </Link>
         <li className="flex items-center space-x-2">
           <FaChartLine />
           <span className="text-[#B2BEBB]">Analytics</span>

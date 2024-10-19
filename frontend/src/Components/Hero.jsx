@@ -3,7 +3,6 @@ import Ellipse1 from "../assets/Ellipse1.png";
 import Ellipse2 from "../assets/Ellipse2.png";
 import Ellipse3 from "../assets/Ellipse3.png";
 import Ellipse4 from "../assets/Ellipse4.png";
-import { Link } from "react-router-dom";
 
 export default function HeroHome() {
   return (
@@ -40,15 +39,14 @@ export default function HeroHome() {
                   data-aos="zoom-y-out"
                   data-aos-delay={450}
                 >
-                  <Link
-                    to={"/signup"}
+                  <div
                     className="btn group mb-4 w-full bg-[#0244F1] text-white shadow hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
                     href="#0"
                   >
                     <span className="relative inline-flex items-center">
                       Register Student
                     </span>
-                  </Link>
+                  </div>
                   <a
                     className="btn w-full text-[#0244F1] bg-[#FFFF]shadow hover:bg-gray-50 sm:ml-4 sm:w-auto border border-[#0244F1] text-sm"
                     href="#0"

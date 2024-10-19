@@ -16,6 +16,10 @@ const Signup = () => {
     city: "",
     postCode: "",
     email: "",
+    schoolLevel: "",
+    faculty: "",
+    department: "",
+    course: "",
   });
 
   const nextStep = () => {
@@ -48,6 +52,7 @@ const Signup = () => {
           <StepTwo
             nextStep={nextStep}
             previousStep={previousStep}
+            setFormData={handleFormDataChange}
             formData={formData}
           />
         );
@@ -73,7 +78,7 @@ const Signup = () => {
       <Sidebar />
 
       {/* Main content */}
-      <div className="ml-[25%] w-[75%] h-screen pt-20 p-8 bg-gray-50">
+      <div className="ml-[25%] w-[75%] h-screen pt-20 p-8 ">
         <Stepper currentStep={step} />
         {renderStep()}
       </div>

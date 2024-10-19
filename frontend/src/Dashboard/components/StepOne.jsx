@@ -2,6 +2,7 @@ import PropTypes from "prop-types"; // Import PropTypes
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Heading from "./Heading";
 
 const StepOne = ({ nextStep, formData, setFormData }) => {
   const navigate = useNavigate();
@@ -40,7 +41,6 @@ const StepOne = ({ nextStep, formData, setFormData }) => {
 
   const [errors, setErrors] = useState({});
 
-  // Validation function
   const validateFields = () => {
     let errors = {};
     if (!formData.institution) {
@@ -67,7 +67,7 @@ const StepOne = ({ nextStep, formData, setFormData }) => {
 
   const handleNext = () => {
     if (validateFields()) {
-      nextStep(); // Call the parent's nextStep function
+      nextStep();
     }
   };
 
@@ -83,10 +83,7 @@ const StepOne = ({ nextStep, formData, setFormData }) => {
       </div>
 
       {/* Centered paragraph */}
-      <div className="text-center mb-6">
-        <h3 className="text-lg font-bold">Welcome to School</h3>
-        <p className="text-gray-600">Enter institution information below</p>
-      </div>
+      <Heading header={"Welcome to School"} text={"Register School Courses"} />
 
       {/* Form Content */}
       <form className="mx-auto max-w-md">
@@ -166,7 +163,7 @@ const StepOne = ({ nextStep, formData, setFormData }) => {
         />
         {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
-        <div className="mt-8 flex justify-between">
+        <div className="mt-8 flex justify-center">
           <button
             type="button"
             className="bg-blue-600 text-white px-4 py-2 rounded"

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Landing() {
   return (
     <div>
@@ -27,20 +29,6 @@ function Landing() {
                 href="#"
               >
                 Features
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
               </a>
               <a
                 className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
@@ -62,12 +50,12 @@ function Landing() {
               >
                 Log in
               </a>
-              <a
+              <Link
+                to={"/signup"}
                 className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                href="/login"
               >
-                Connect Wallet
-              </a>
+                <a href="/login">Connect Wallet</a>
+              </Link>
             </div>
           </div>
         </div>
